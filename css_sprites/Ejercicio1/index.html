@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+  #skyline {
+    width: 400px; height: 200px;
+    background: url(sprite1.jpg);
+    margin: 10px auto; padding: 0;
+    position: relative;}
+  #skyline li {
+    margin: 0; padding: 0; list-style: none;
+    position: absolute; top: 0;}
+  #skyline li, #skyline a {
+      height:200px; display: block;
+    }
+  #panel1b {left: 0; width:95px;}
+  #panel2b {left: 96px; width:75px;}
+  #panel3b {left: 172px; width:110px;}
+  #panel4b {left: 283px; width: 117px;}
+
+  #panel1b a:hover {
+      background-image: url(sprite1.jpg);
+      background-repeat: no-repeat;
+      background-position: 0 -200px;
+   }
+  #panel2b a:hover {
+      background-image: url(sprite1.jpg);
+      background-repeat: no-repeat;
+      background-position: -96px -200px;
+    }
+  #panel3b a:hover {
+      background-image: url(sprite1.jpg);
+      background-repeat: no-repeat;
+      background-position: -172px -200px;
+    }
+  #panel4b a:hover {
+      background-image: url(sprite1.jpg);
+      background-repeat: no-repeat;
+      background-position: -283px -200px;
+    }
+</style>
+</head>
+<body>
+ <ul id="skyline">
+    <li id="panel1b"><a href="#1"></a></li>
+    <li id="panel2b"><a href="#2"></a></li>
+    <li id="panel3b"><a href="#3"></a></li>
+    <li id="panel4b"><a href="#4"></a></li>
+  </ul>
+</body>
+</html>

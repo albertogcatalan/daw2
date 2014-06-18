@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Ejercicio 1 - Inicialización tabla mediante datatables</title>
+        <style type="text/css" title="currentStyle">
+            @import "datatables/media/css/demo_table.css";
+            @import "datatables/media/css/demo_page.css";
+        </style>
+        <script type="text/javascript" language="javascript" src="datatables/media/js/jquery.js"></script>
+        <script type="text/javascript" language="javascript" src="datatables/media/js/jquery.dataTables.js"></script>
+        <script>
+            $(document).ready(function() {
+                
+               oTable = $('#example').dataTable( {
+                    "bProcessing": true,
+                    "bServerSide": true,
+                    "sAjaxSource": "php/ajax_ejercicio4.php",
+                    "aoColumns": [
+                        { "mData": "nombre" },
+                        { "mData": "numclinica",
+                            "bVisible":false},
+                        { "mData": "razonsocial",
+                            "bVisible":false},
+                        { "mData": "cif" },
+                        { "mData": "localidad" },
+                        { "mData": "provincia" },
+                        { "mData": "direccion",
+                            "bVisible":false},
+                        { "mData": "cp",
+                            "bVisible":false},
+                        {
+                            "mData": "id_clinica",
+                            "mRender": function ( data, type, full ) {     
+                               return '<a href="#?id_clinica=' + data + '"><button class="editarbtn">Editar</button></a>';
+                            },
+                            "bSortable": false, 
+                            "bSearchable": false,
+                            "sWidth": "60px"
+                        },
+                        {
+                            "mData": "id_clinica",
+                            "mRender": function ( data, type, full ) {  
+                                
+                               return '<a href="borrar?id_clinica=' + data + '"><button class="borrarbtn">Borrar</button></a>';
+                            },
+                            "bSortable": false, 
+                            "bSearchable": false,
+                            "sWidth": "60px"
+                        }
+                        
+                    
+                ]
+                    
+            });
+            
+            $("#example").on("click", ".editarbtn", function(event){
+                event.preventDefault();
+                $("#demo").fadeOut(100);
+                $("#formulario").fadeIn(100);
+                var nRow = $(this).parents('tr')[0];
+                var aData = oTable.fnGetData(nRow);
+                $("#id_clinica").val(aData.id_clinica);                
+                $("#nombre").val(aData.nombre); 
+                $("#numclinica").val(aData.numclinica); 
+                $("#razonsocial").val(aData.razonsocial); 
+                $("#cif").val(aData.cif);
+                $("#localidad").val(aData.localidad); 
+                $("#provincia").val(aData.provincia);
+                $("#direccion").val(aData.provincia);
+                $("#cp").val(aData.cp); 
+               
+            });
+            
+            
+            
+           
+        });
+        </script>
+    </head>
+    <body id="dt_example">
+        <div id="container">
+            <div id="demo">
+                <table id="example" class="display">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>NumClinica</th>
+                            <th>RazonSocial</th>
+                            <th>Cif</th>
+                            <th>Localidad</th>
+                            <th>Provincia</th>
+                            <th>Direccion</th>
+                            <th>CP</th>
+                            <th>Editar</th>
+                            <th>Borrar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </div>
+            <div id="formulario" style="display:none;">
+                <form id="miformulario">
+                    <label for="id_clinica">id_clinica</label> <input type="text" id="id_clinica"><br/>
+                    <label for="nombre">nombre</label> <input type="text" id="nombre"><br/>
+                    <label for="numclinica">numclinica</label> <input type="text" id="numclinica"><br/>
+                    <label for="razonsocial">razonsocial</label> <input type="text" id="razonsocial"><br/>
+                    <label for="cif">cif</label> <input type="text" id="cif"><br/>
+                    <label for="localidad">localidad</label> <input type="text" id="localidad"><br/>
+                    <label for="provincia">provincia</label> <input type="text" id="provincia"><br/>
+                    <label for="direccion">direccion</label> <input type="text" id="direccion"><br/>
+                    <label for="cp">cp</label> <input type="text" id="cp"><br/>
+                    
+                </form>  
+            </div>
+        </div>
+    </body>
+</html>

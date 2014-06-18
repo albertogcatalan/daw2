@@ -1,0 +1,8 @@
+{{extend 'layout.html'}}
+
+
+<h2>{{=T("Profile")}}</h2>
+{{=crud.read(db.auth_user, user)}}
+<h2>{{=T('Messages')}}</h2>
+
+{{for post in posts:}}
